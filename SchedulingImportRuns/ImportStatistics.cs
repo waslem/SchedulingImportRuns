@@ -39,6 +39,9 @@ namespace SchedulingImportRuns
                 }
             }
 
+            this.RunCount = importedRecords.GroupBy(u => u.DriverName)
+                                        .ToDictionary(grp => grp.Key, grp => grp.ToList()).Count;
+
             this.ImportedRecordCount =  importCount;
             this.BailiffImportCount = bailiffCount;
             this.ExpressImportCount = expressCount;

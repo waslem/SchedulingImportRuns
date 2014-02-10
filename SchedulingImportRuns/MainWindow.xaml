@@ -6,7 +6,7 @@
         <CollectionViewSource x:Key="ItemCollectionViewSource" CollectionViewType="ListCollectionView" />
     </Window.Resources>
     <Grid Margin="10,0,16,14">
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="161" Margin="21,590,0,0" Stroke="Black" VerticalAlignment="Top" Width="140"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="187" Margin="16,552,0,0" Stroke="Black" VerticalAlignment="Top" Width="140"/>
         <Button Content="Import" HorizontalAlignment="Left" Margin="53,80,0,0" VerticalAlignment="Top" Width="75" Click="btnImportClick" Height="22"/>
         <Button Content="Export" HorizontalAlignment="Left" Margin="53,130,0,0" VerticalAlignment="Top" Width="75" Click="btnExportClick" Height="22"/>
         <DataGrid x:Name="dataGridRecords" HorizontalAlignment="Left" Margin="187,15,0,0" VerticalAlignment="Top" Height="736" Width="817" ItemsSource="{Binding}"/>
@@ -20,16 +20,18 @@
         <Image x:Name="bbpoLogo" HorizontalAlignment="Left" Height="51" Margin="21,15,0,0" VerticalAlignment="Top" Width="43" Source="pack://siteoforigin:,,,/Resources/rsz_backofficelogomedium.ico" Visibility="Visible" />
         <Label x:Name="lblBbpo" Content="BBPO Scheduling" HorizontalAlignment="Left" Margin="53,15,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblImportRuns" Content="Import Runs" HorizontalAlignment="Left" Margin="53,32,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label x:Name="lblStatistics" Content="Statistics" HorizontalAlignment="Left" Margin="55,600,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,1.731" FontWeight="Bold" />
-        <Label x:Name="lblRecordCount" Content="Record Count: " HorizontalAlignment="Left" Margin="36,629,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblStatistics" Content="Statistics" HorizontalAlignment="Left" Margin="53,569,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,1.731" FontWeight="Bold" />
+        <Label x:Name="lblRecordCount" Content="Record Count: " HorizontalAlignment="Left" Margin="31,596,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblFileCount" Content="File Count: " HorizontalAlignment="Left" Margin="46,171,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblImportedCount" Content="Imported Count: " HorizontalAlignment="Left" Margin="25,655,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblBailiffCount" Content="Bailiff Count:" HorizontalAlignment="Left" Margin="46,681,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblExpressCount" Content="Express Count:" HorizontalAlignment="Left" Margin="38,707,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblRecordCountNum" Content="" HorizontalAlignment="Left" Margin="125,629,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblImportedCount" Content="Imported Count: " HorizontalAlignment="Left" Margin="20,622,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblBailiffCount" Content="Bailiff Count:" HorizontalAlignment="Left" Margin="41,648,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblExpressCount" Content="Express Count:" HorizontalAlignment="Left" Margin="33,674,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblRunCount" Content="Run Count:" HorizontalAlignment="Left" Margin="51,700,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblRecordCountNum" Content="" HorizontalAlignment="Left" Margin="120,596,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblFileCountNum" Content="" HorizontalAlignment="Left" Margin="120,171,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblImportedCountNum" Content="" HorizontalAlignment="Left" Margin="125,655,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblBailiffCountNum" Content="" HorizontalAlignment="Left" Margin="125,681,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblExpressCountNum" Content="" HorizontalAlignment="Left" Margin="125,707,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblImportedCountNum" Content="" HorizontalAlignment="Left" Margin="120,622,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblBailiffCountNum" Content="" HorizontalAlignment="Left" Margin="120,648,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblExpressCountNum" Content="" HorizontalAlignment="Left" Margin="120,674,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblRunCountNum" Content="" HorizontalAlignment="Left" Margin="120,700,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

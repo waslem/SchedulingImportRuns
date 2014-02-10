@@ -24,6 +24,7 @@ namespace SchedulingImportRuns
     /// </summary>
     public partial class MainWindow : Window
     {
+        // TODO: refactor these lists and ienumerables to potentially encapsulated in 1 object
         private List<String> importedFiles;
         private List<ImportedRecord> importedRecords;
         private IEnumerable<ExportData> WB_Bailiff;
@@ -70,8 +71,12 @@ namespace SchedulingImportRuns
 
         private void btnExportClick(object sender, RoutedEventArgs e)
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             CalculateExportFields();
             ExportData();
+
+            Mouse.OverrideCursor = null;
         }
 
         private void CalculateStats()
@@ -100,16 +105,19 @@ namespace SchedulingImportRuns
             lblImportedCountNum.Content = stats.ImportedRecordCount.ToString();
             lblBailiffCountNum.Content = stats.BailiffImportCount.ToString();
             lblExpressCountNum.Content = stats.ExpressImportCount.ToString();
+            lblRunCountNum.Content = stats.RunCount.ToString();
         }
         private void ExportData()
         {
 
             CsvFileDescription outputFileDescription = new CsvFileDescription { FirstLineHasColumnNames = true };
 
+            // TODO: rewrite these as resources and allow ability to change default file location and name
             cc.Write(WB_Express, @"K:\WB Express.csv", outputFileDescription);
             cc.Write(WB_Bailiff, @"K:\WB Bailiff.csv", outputFileDescription);
         }
 
+        // todo potentially factor this out to another class?
         private void CalculateExportFields()
         {
             importedRecords = importedRecords
