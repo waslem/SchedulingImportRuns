@@ -26,9 +26,11 @@ namespace SchedulingImportRuns
     {
         private List<String> importedFiles;
         private List<ImportedRecord> importedRecords;
-
         private IEnumerable<ExportData> WB_Bailiff;
         private IEnumerable<ExportData> WB_Express;
+
+        private CsvContext cc;
+        private ImportStatistics stats; 
 
         public MainWindow()
         {
@@ -36,58 +38,94 @@ namespace SchedulingImportRuns
 
             importedFiles = new List<string>();
             importedRecords = new List<ImportedRecord>();
-
             WB_Bailiff = new List<ExportData>();
             WB_Express = new List<ExportData>();
+
+            cc = new CsvContext();
+            stats = new ImportStatistics();
         }
 
         private void btnImportClick(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog importDialog = new OpenFileDialog();
+            OpenFileDialog importDialog = SetupImportDialog();
 
-            importDialog.Filter = "Text Files (*.txt) | *.txt";
-            importDialog.CheckFileExists = true;
-            importDialog.Multiselect = true;
-
+            // add the file names to the importedFiles list 
             if (importDialog.ShowDialog() == true)
             {
                 foreach (var file in importDialog.FileNames)
                     importedFiles.Add(file);
             }
+
+            listViewFiles.Items.Refresh();
+            listViewFiles.ItemsSource = importedFiles;
+
+            // import the data from the files into the imported records list
+            importedRecords = Importer.Import(importedFiles, cc);
+           
+            dataGridRecords.DataContext = importedRecords;
+
+            CalculateStats();
+            AssignStatisticLabels();
         }
 
         private void btnExportClick(object sender, RoutedEventArgs e)
         {
-            List<ImportedRecord> temp = new List<ImportedRecord>();
-            CsvContext cc = new CsvContext();
+            CalculateExportFields();
+            ExportData();
+        }
 
-            CsvFileDescription inputFileDescription = new CsvFileDescription
-            {
-                SeparatorChar = ',',
-                FirstLineHasColumnNames = true,
-            };
+        private void CalculateStats()
+        {
+            stats.TotalFileCount = importedFiles.Count;
+            stats.TotalRecordCount = importedRecords.Count;
+            stats.CalculateImportCounts(importedRecords);
+        }
 
-            for (int i = 0; i < importedFiles.Count; i++)
-			{
-                temp = cc.Read<ImportedRecord>(importedFiles[i], inputFileDescription).ToList();
-                foreach (var item in temp)
-                    importedRecords.Add(item);
-			}
+        private static OpenFileDialog SetupImportDialog()
+        {
+            OpenFileDialog importDialog = new OpenFileDialog();
 
+            importDialog.InitialDirectory = @"C:\X-Y Files";
+            importDialog.Filter = "Text Files (*.txt) | *.txt";
+            importDialog.CheckFileExists = true;
+            importDialog.Multiselect = true;
+
+            return importDialog;
+        }
+
+        private void AssignStatisticLabels()
+        {
+            lblFileCountNum.Content = stats.TotalFileCount.ToString();
+            lblRecordCountNum.Content = stats.TotalRecordCount.ToString();
+            lblImportedCountNum.Content = stats.ImportedRecordCount.ToString();
+            lblBailiffCountNum.Content = stats.BailiffImportCount.ToString();
+            lblExpressCountNum.Content = stats.ExpressImportCount.ToString();
+        }
+        private void ExportData()
+        {
+
+            CsvFileDescription outputFileDescription = new CsvFileDescription { FirstLineHasColumnNames = true };
+
+            cc.Write(WB_Express, @"K:\WB Express.csv", outputFileDescription);
+            cc.Write(WB_Bailiff, @"K:\WB Bailiff.csv", outputFileDescription);
+        }
+
+        private void CalculateExportFields()
+        {
             importedRecords = importedRecords
-                                .Where(u => u.OrderNum != null)
-                                .OrderBy(u => u.OrderNum)
-                                .ToList();
+                .Where(u => u.OrderNum != null)
+                .OrderBy(u => u.OrderNum)
+                .ToList();
 
             WB_Bailiff = importedRecords
                 .Where(u => u.OrderNum > 30000)
                 .Select(u => new ExportData
-                    {
-                        DriverName = u.DriverName,
-                        OrderNum = u.OrderNum.ToString(),
-                        X = u.X,
-                        Y = u.Y
-                    });
+                {
+                    DriverName = u.DriverName,
+                    OrderNum = u.OrderNum.ToString(),
+                    X = u.X,
+                    Y = u.Y
+                });
 
             WB_Express = importedRecords
                 .Where(u => u.OrderNum < 30000)
@@ -98,11 +136,6 @@ namespace SchedulingImportRuns
                     X = u.X,
                     Y = u.Y
                 });
-
-            CsvFileDescription outputFileDescription = new CsvFileDescription { FirstLineHasColumnNames = true };
-
-            cc.Write(WB_Express, @"K:\WB Express.csv", outputFileDescription);
-            cc.Write(WB_Bailiff, @"K:\WB Bailiff.csv", outputFileDescription);
         }
     }
 }
