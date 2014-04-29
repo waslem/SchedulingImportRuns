@@ -21,7 +21,7 @@
                 <MenuItem Header="_About"/>
             </Menu>
         </DockPanel>
-        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="203" Margin="16,351,0,0" Stroke="Black" VerticalAlignment="Top" Width="140"/>
+        <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="203" Margin="21,351,0,0" Stroke="Black" VerticalAlignment="Top" Width="140"/>
         <Button Content="Import" HorizontalAlignment="Left" Margin="53,117,0,0" VerticalAlignment="Top" Width="75" Click="btnImportClick" Height="22"/>
         <Button Content="Export" HorizontalAlignment="Left" Margin="53,144,0,0" VerticalAlignment="Top" Width="75" Click="btnExportClick" Height="22"/>
         <DataGrid x:Name="dataGridRecords" HorizontalAlignment="Left" Margin="187,51,0,0" VerticalAlignment="Top" Height="503" Width="817" ItemsSource="{Binding}"/>
@@ -35,18 +35,18 @@
         <Image x:Name="bbpoLogo" HorizontalAlignment="Left" Height="51" Margin="23,51,0,0" VerticalAlignment="Top" Width="43" Source="pack://siteoforigin:,,,/Resources/rsz_backofficelogomedium.ico" Visibility="Visible" />
         <Label x:Name="lblBbpo" Content="BBPO Scheduling" HorizontalAlignment="Left" Margin="55,51,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblImportRuns" Content="Import Runs" HorizontalAlignment="Left" Margin="55,68,0,0" VerticalAlignment="Top" Height="29"/>
-        <Label x:Name="lblStatistics" Content="Statistics" HorizontalAlignment="Left" Margin="41,370,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,1.731" FontWeight="Bold" />
+        <Label x:Name="lblStatistics" Content="Statistics" HorizontalAlignment="Left" Margin="65,366,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,1.731" FontWeight="Bold" />
         <Label x:Name="lblRecordCount" Content="Record Count: " HorizontalAlignment="Left" Margin="36,408,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblFileCount" Content="File Count: " HorizontalAlignment="Left" Margin="46,171,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblImportedCount" Content="Imported Count: " HorizontalAlignment="Left" Margin="25,434,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblBailiffCount" Content="Bailiff Count:" HorizontalAlignment="Left" Margin="46,460,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblExpressCount" Content="Express Count:" HorizontalAlignment="Left" Margin="28,486,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblRunCount" Content="Run Count:" HorizontalAlignment="Left" Margin="56,512,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblImportedCount" Content="Imported Count: " HorizontalAlignment="Left" Margin="23,434,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblBailiffCount" Content="Bailiff Count:" HorizontalAlignment="Left" Margin="43,460,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblExpressCount" Content="Express Count:" HorizontalAlignment="Left" Margin="33,486,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblRunCount" Content="Run Count:" HorizontalAlignment="Left" Margin="51,512,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblRecordCountNum" Content="" HorizontalAlignment="Left" Margin="125,408,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblFileCountNum" Content="" HorizontalAlignment="Left" Margin="120,171,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblFileCountNum" Content="" HorizontalAlignment="Left" Margin="115,171,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblImportedCountNum" Content="" HorizontalAlignment="Left" Margin="125,434,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblBailiffCountNum" Content="" HorizontalAlignment="Left" Margin="125,460,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblExpressCountNum" Content="" HorizontalAlignment="Left" Margin="125,512,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblExpressCountNum" Content="" HorizontalAlignment="Left" Margin="125,486,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblRunCountNum" Content="" HorizontalAlignment="Left" Margin="125,512,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
