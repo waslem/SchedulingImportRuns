@@ -158,6 +158,7 @@ namespace SchedulingImportRuns
             if (result == System.Windows.Forms.DialogResult.OK)
             {
                 Properties.Settings.Default.defaultImportLocation = importDialog.SelectedPath;
+                Properties.Settings.Default.Save();
             }
         }
 
@@ -169,6 +170,7 @@ namespace SchedulingImportRuns
             if (result == System.Windows.Forms.DialogResult.OK)
             {
                 Properties.Settings.Default.defaultExportLocation = exportDialog.SelectedPath;
+                Properties.Settings.Default.Save();
             }
         }
     }
