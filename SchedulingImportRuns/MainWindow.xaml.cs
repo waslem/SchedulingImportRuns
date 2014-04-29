@@ -91,7 +91,7 @@ namespace SchedulingImportRuns
             OpenFileDialog importDialog = new OpenFileDialog();
 
             importDialog.InitialDirectory = Properties.Settings.Default.defaultImportLocation;
-            //importDialog.InitialDirectory = @"C:\X-Y Files";
+
             importDialog.Filter = "Text Files (*.txt) | *.txt";
             importDialog.CheckFileExists = true;
             importDialog.Multiselect = true;
