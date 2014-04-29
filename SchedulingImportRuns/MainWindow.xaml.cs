@@ -90,7 +90,8 @@ namespace SchedulingImportRuns
         {
             OpenFileDialog importDialog = new OpenFileDialog();
 
-            importDialog.InitialDirectory = @"C:\X-Y Files";
+            importDialog.InitialDirectory = Properties.Settings.Default.defaultImportLocation;
+            //importDialog.InitialDirectory = @"C:\X-Y Files";
             importDialog.Filter = "Text Files (*.txt) | *.txt";
             importDialog.CheckFileExists = true;
             importDialog.Multiselect = true;
@@ -112,9 +113,12 @@ namespace SchedulingImportRuns
 
             CsvFileDescription outputFileDescription = new CsvFileDescription { FirstLineHasColumnNames = true };
 
-            // TODO: rewrite these as resources and allow ability to change default file location and name
-            cc.Write(WB_Express, @"K:\WB Express.csv", outputFileDescription);
-            cc.Write(WB_Bailiff, @"K:\WB Bailiff.csv", outputFileDescription);
+            string bailiffFile = Properties.Settings.Default.defaultExportLocation + "WB Bailiff.csv";
+            string expressFile = Properties.Settings.Default.defaultExportLocation + "WB Express.csv";
+
+            cc.Write(WB_Bailiff, bailiffFile, outputFileDescription);
+            cc.Write(WB_Express, expressFile, outputFileDescription);
+
         }
 
         // todo potentially factor this out to another class?
@@ -144,6 +148,28 @@ namespace SchedulingImportRuns
                     X = u.X,
                     Y = u.Y
                 });
+        }
+
+        private void MenuChangeDefaultImport_Click(object sender, RoutedEventArgs e)
+        {
+            var importDialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = importDialog.ShowDialog();
+
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                Properties.Settings.Default.defaultImportLocation = importDialog.SelectedPath;
+            }
+        }
+
+        private void MenuChangeDefaultExport_Click(object sender, RoutedEventArgs e)
+        {
+            var exportDialog = new System.Windows.Forms.FolderBrowserDialog();
+            System.Windows.Forms.DialogResult result = exportDialog.ShowDialog();
+
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                Properties.Settings.Default.defaultExportLocation = exportDialog.SelectedPath;
+            }
         }
     }
 }
