@@ -1,7 +1,7 @@
 ﻿<Window x:Class="SchedulingImportRuns.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="BBPO Scheduling Import Runs" Height="609.306" Width="1047.729" Icon="pack://siteoforigin:,,,/Resources/rsz_backofficelogomedium.ico">
+        Title="BBPO Scheduling Import Runs" Height="609.306" Width="1047.729">
     <Window.Resources>
         <CollectionViewSource x:Key="ItemCollectionViewSource" CollectionViewType="ListCollectionView" />
     </Window.Resources>
@@ -32,7 +32,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Image x:Name="bbpoLogo" HorizontalAlignment="Left" Height="51" Margin="23,51,0,0" VerticalAlignment="Top" Width="43" Source="pack://siteoforigin:,,,/Resources/rsz_backofficelogomedium.ico" Visibility="Visible" />
         <Label x:Name="lblBbpo" Content="BBPO Scheduling" HorizontalAlignment="Left" Margin="55,51,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblImportRuns" Content="Import Runs" HorizontalAlignment="Left" Margin="55,68,0,0" VerticalAlignment="Top" Height="29"/>
         <Label x:Name="lblStatistics" Content="Statistics" HorizontalAlignment="Left" Margin="65,366,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,1.731" FontWeight="Bold" />
