@@ -111,13 +111,23 @@ namespace SchedulingImportRuns
         private void ExportData()
         {
 
-            CsvFileDescription outputFileDescription = new CsvFileDescription { FirstLineHasColumnNames = true };
+            try
+            {
+                CsvFileDescription outputFileDescription = new CsvFileDescription { FirstLineHasColumnNames = true };
 
-            string bailiffFile = Properties.Settings.Default.defaultExportLocation + "WB Bailiff.csv";
-            string expressFile = Properties.Settings.Default.defaultExportLocation + "WB Express.csv";
+                string bailiffFile = Properties.Settings.Default.defaultExportLocation + "\\WB Bailiff.csv";
+                string expressFile = Properties.Settings.Default.defaultExportLocation + "\\WB Express.csv";
 
-            cc.Write(WB_Bailiff, bailiffFile, outputFileDescription);
-            cc.Write(WB_Express, expressFile, outputFileDescription);
+                cc.Write(WB_Bailiff, bailiffFile, outputFileDescription);
+                cc.Write(WB_Express, expressFile, outputFileDescription);
+
+                MessageBox.Show("Export completed successfully.\n Created " + bailiffFile + " \n Created " + expressFile);
+            }
+            catch (Exception Ex)
+            {
+                MessageBox.Show("Error exporting files" + Environment.NewLine + Ex.Message);
+            }
+
 
         }
 
