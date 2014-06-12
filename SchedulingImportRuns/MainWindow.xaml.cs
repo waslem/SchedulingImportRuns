@@ -2,6 +2,8 @@
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -31,12 +33,13 @@ namespace SchedulingImportRuns
         private IEnumerable<ExportData> WB_Express;
 
         private CsvContext cc;
-        private ImportStatistics stats; 
+        private ImportStatistics stats;
+
 
         public MainWindow()
         {
             InitializeComponent();
-
+            
             importedFiles = new List<string>();
             importedRecords = new List<ImportedRecord>();
             WB_Bailiff = new List<ExportData>();
@@ -44,7 +47,8 @@ namespace SchedulingImportRuns
 
             cc = new CsvContext();
             stats = new ImportStatistics();
-        }
+
+       }
 
         private void btnImportClick(object sender, RoutedEventArgs e)
         {
@@ -77,6 +81,8 @@ namespace SchedulingImportRuns
             ExportData();
 
             Mouse.OverrideCursor = null;
+
+
         }
 
         private void CalculateStats()
@@ -182,6 +188,11 @@ namespace SchedulingImportRuns
                 Properties.Settings.Default.defaultExportLocation = exportDialog.SelectedPath;
                 Properties.Settings.Default.Save();
             }
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }
