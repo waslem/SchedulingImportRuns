@@ -13,13 +13,13 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <DockPanel Margin="-14,0,-22,0">
-            <Menu Height="20" Width="1044" Background="#FFA9D1F4" VerticalAlignment="Top">
+            <Menu Height="20" Width="1044" Background="#EBEBEB" VerticalAlignment="Top">
+                <MenuItem Header=""></MenuItem>
                 <MenuItem Header="_File">
                     <MenuItem Name="MenuChangeDefaultImport" Header="_Change Default Import Location" Click="MenuChangeDefaultImport_Click"></MenuItem>
                     <MenuItem Name="MenuChangeDefaultExport" Header="_Change Default Export Location" Click="MenuChangeDefaultExport_Click"></MenuItem>
                     <MenuItem Name="Exit" Header="_Exit" Click="Exit_Click"></MenuItem>
                 </MenuItem>
-                <MenuItem Header="_About"/>
             </Menu>
         </DockPanel>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="203" Margin="21,351,0,0" Stroke="Black" VerticalAlignment="Top" Width="140"/>
