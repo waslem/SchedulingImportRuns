@@ -137,7 +137,7 @@ namespace SchedulingImportRuns
 
                 string bailiffLocation, expressLocation;
 
-                if (result.ToString() == "OK")
+                if (result.ToString().Equals("OK"))
                 {
                     bailiffLocation = folder.SelectedPath;
                     expressLocation = folder.SelectedPath;
