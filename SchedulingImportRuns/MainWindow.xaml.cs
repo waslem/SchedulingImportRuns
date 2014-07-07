@@ -54,23 +54,33 @@ namespace SchedulingImportRuns
         {
             OpenFileDialog importDialog = SetupImportDialog();
 
-            // add the file names to the importedFiles list 
-            if (importDialog.ShowDialog() == true)
+            try
             {
-                foreach (var file in importDialog.FileNames)
-                    importedFiles.Add(file);
+                // add the file names to the importedFiles list 
+                if (importDialog.ShowDialog() == true)
+                {
+                    foreach (var file in importDialog.FileNames)
+                        importedFiles.Add(file);
+                }
+
+                listViewFiles.Items.Refresh();
+                listViewFiles.ItemsSource = importedFiles;
+
+                // import the data from the files into the imported records list
+                importedRecords = Importer.Import(importedFiles, cc);
+
+                dataGridRecords.DataContext = importedRecords;
+
+                CalculateStats();
+                AssignStatisticLabels();
             }
+            catch (Exception)
+            {
+                listViewFiles.ItemsSource = null;
+                listViewFiles.Items.Refresh();
 
-            listViewFiles.Items.Refresh();
-            listViewFiles.ItemsSource = importedFiles;
-
-            // import the data from the files into the imported records list
-            importedRecords = Importer.Import(importedFiles, cc);
-           
-            dataGridRecords.DataContext = importedRecords;
-
-            CalculateStats();
-            AssignStatisticLabels();
+                MessageBox.Show("Invalid file format, please see documentation on required file specification");
+            }
         }
 
         private void btnExportClick(object sender, RoutedEventArgs e)
@@ -81,8 +91,6 @@ namespace SchedulingImportRuns
             ExportData();
 
             Mouse.OverrideCursor = null;
-
-
         }
 
         private void CalculateStats()
@@ -121,20 +129,32 @@ namespace SchedulingImportRuns
             {
                 CsvFileDescription outputFileDescription = new CsvFileDescription { FirstLineHasColumnNames = true };
 
-                string bailiffFile = Properties.Settings.Default.defaultExportLocation + "\\WB Bailiff.csv";
-                string expressFile = Properties.Settings.Default.defaultExportLocation + "\\WB Express.csv";
+                // use winforms folderbrowser dialog for browsing a folder
+                System.Windows.Forms.FolderBrowserDialog folder = new System.Windows.Forms.FolderBrowserDialog();
+                folder.SelectedPath = Properties.Settings.Default.defaultExportLocation;
 
-                cc.Write(WB_Bailiff, bailiffFile, outputFileDescription);
-                cc.Write(WB_Express, expressFile, outputFileDescription);
+                System.Windows.Forms.DialogResult result = folder.ShowDialog();
 
-                MessageBox.Show("Export completed successfully.\n Created " + bailiffFile + " \n Created " + expressFile);
+                string bailiffLocation, expressLocation;
+
+                if (result.ToString() == "OK")
+                {
+                    bailiffLocation = folder.SelectedPath;
+                    expressLocation = folder.SelectedPath;
+
+                    string bailiffFile = bailiffLocation + "\\WB Bailiff.csv";
+                    string expressFile = expressLocation + "\\WB Express.csv";
+
+                    cc.Write(WB_Bailiff, bailiffFile, outputFileDescription);
+                    cc.Write(WB_Express, expressFile, outputFileDescription);
+
+                    MessageBox.Show("Export completed successfully.\n Created " + bailiffFile + " \n Created " + expressFile);
+                }
             }
             catch (Exception Ex)
             {
                 MessageBox.Show("Error exporting files" + Environment.NewLine + Ex.Message);
             }
-
-
         }
 
         // todo potentially factor this out to another class?
