@@ -61,18 +61,19 @@ namespace SchedulingImportRuns
                 {
                     foreach (var file in importDialog.FileNames)
                         importedFiles.Add(file);
+
+                    listViewFiles.Items.Refresh();
+                    listViewFiles.ItemsSource = importedFiles;
+
+                    // import the data from the files into the imported records list
+                    importedRecords = Importer.Import(importedFiles, cc);
+
+                    dataGridRecords.DataContext = importedRecords;
+
+                    CalculateStats();
+                    AssignStatisticLabels();
                 }
 
-                listViewFiles.Items.Refresh();
-                listViewFiles.ItemsSource = importedFiles;
-
-                // import the data from the files into the imported records list
-                importedRecords = Importer.Import(importedFiles, cc);
-
-                dataGridRecords.DataContext = importedRecords;
-
-                CalculateStats();
-                AssignStatisticLabels();
             }
             catch (Exception)
             {
