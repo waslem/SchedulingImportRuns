@@ -124,7 +124,6 @@ namespace SchedulingImportRuns
         }
         private void ExportData()
         {
-
             try
             {
                 CsvFileDescription outputFileDescription = new CsvFileDescription { FirstLineHasColumnNames = true };
