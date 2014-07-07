@@ -27,7 +27,7 @@
     <TargetCulture>en-AU</TargetCulture>
     <ProductName>Scheduling Runs Import</ProductName>
     <PublisherName>Jamie van Walsum</PublisherName>
-    <ApplicationRevision>12</ApplicationRevision>
+    <ApplicationRevision>13</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

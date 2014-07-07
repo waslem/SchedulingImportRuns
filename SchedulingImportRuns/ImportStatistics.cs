@@ -15,7 +15,6 @@ namespace SchedulingImportRuns
         public int ExpressImportCount { get; set; }
         public int RunCount { get; set; }
 
-
         public void CalculateImportCounts(List<ImportedRecord> importedRecords)
         {
             int importCount = 0;
