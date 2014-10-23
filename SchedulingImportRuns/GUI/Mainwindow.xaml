@@ -1,9 +1,10 @@
-﻿<Window x:Class="SchedulingImportRuns.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Scheduling Import Runs" Height="609.306" Width="1047.729" Icon="Resources/EndOfDay.ico">
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="SchedulingImportRuns.MainWindow"
+        Title="Scheduling Import Runs" Height="609.306" Width="1047.729" Icon="../Resources/EndOfDay.ico">
     <Window.Resources>
-        <CollectionViewSource x:Key="ItemCollectionViewSource" CollectionViewType="ListCollectionView" />
+        <CollectionViewSource x:Key="ItemCollectionViewSource" CollectionViewType="{x:Type ListCollectionView}" />
     </Window.Resources>
 
     <Grid Margin="0,0,2,14">
@@ -14,11 +15,11 @@
         </Grid.RowDefinitions>
         <DockPanel Margin="-14,0,-22,0">
             <Menu Height="20" Width="1044" Background="#EBEBEB" VerticalAlignment="Top">
-                <MenuItem Header=""></MenuItem>
+                <MenuItem Header=""/>
                 <MenuItem Header="_File">
-                    <MenuItem Name="MenuChangeDefaultImport" Header="_Change Default Import Location" Click="MenuChangeDefaultImport_Click"></MenuItem>
-                    <MenuItem Name="MenuChangeDefaultExport" Header="_Change Default Export Location" Click="MenuChangeDefaultExport_Click"></MenuItem>
-                    <MenuItem Name="Exit" Header="_Exit" Click="Exit_Click"></MenuItem>
+                    <MenuItem x:Name="MenuChangeDefaultImport" Header="_Change Default Import Location" Click="MenuChangeDefaultImport_Click"/>
+                    <MenuItem x:Name="MenuChangeDefaultExport" Header="_Change Default Export Location" Click="MenuChangeDefaultExport_Click"/>
+                    <MenuItem x:Name="Exit" Header="_Exit" Click="Exit_Click"/>
                 </MenuItem>
             </Menu>
         </DockPanel>

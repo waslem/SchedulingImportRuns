@@ -101,13 +101,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Helpers.cs" />
+    <Compile Include="Logic\Helpers.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Page Include="Mainwindow.xaml">
+    <Page Include="GUI\Mainwindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -115,10 +115,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ExportData.cs" />
-    <Compile Include="ImportedRecord.cs" />
-    <Compile Include="ImportStatistics.cs" />
-    <Compile Include="Mainwindow.xaml.cs">
+    <Compile Include="Logic\ExportData.cs" />
+    <Compile Include="Logic\ImportedRecord.cs" />
+    <Compile Include="Logic\ImportStatistics.cs" />
+    <Compile Include="GUI\Mainwindow.xaml.cs">
       <DependentUpon>Mainwindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
